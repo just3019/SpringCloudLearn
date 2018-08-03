@@ -16,7 +16,11 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>springcloud-eureka</module>
+        <module>eureka-server</module>
+        <module>eureka-client</module>
+        <module>eureka-test</module>
+        <module>ribbon-common</module>
+        <module>zuul-server</module>
     </modules>
 
     <properties>
