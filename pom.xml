@@ -21,6 +21,7 @@
         <module>eureka-test</module>
         <module>ribbon-common</module>
         <module>zuul-server</module>
+        <module>mongo-server</module>
     </modules>
 
     <properties>
