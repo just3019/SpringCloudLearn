@@ -25,6 +25,7 @@
         <module>config-server</module>
         <module>common</module>
         <module>admin-server</module>
+        <module>gateway</module>
     </modules>
 
     <properties>
