@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
+import springfox.documentation.swagger.common.HostNameProvider;
 import springfox.documentation.swagger.web.SwaggerResource;
 import springfox.documentation.swagger.web.SwaggerResourcesProvider;
 
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 @Primary
 @AllArgsConstructor
 public class SwaggerProvider implements SwaggerResourcesProvider {
-    public static final String API_URI = "/v2/api-docs";
+    private static final String API_URI = "/v2/api-docs";
     private final DiscoveryClient discoveryClient;
 
 
@@ -34,8 +35,15 @@ public class SwaggerProvider implements SwaggerResourcesProvider {
         return discoveryClient.getServices().stream().map(this::swaggerResource).collect(Collectors.toList());
     }
 
+    /**
+     * 生成swaggerResource对象
+     *
+     * @param name 服务名称
+     * @return @see springfox.documentation.swagger.web.SwaggerResource
+     */
     private SwaggerResource swaggerResource(String name) {
         SwaggerResource swaggerResource = new SwaggerResource();
+        System.out.println(name);
         swaggerResource.setName(name);
         swaggerResource.setUrl("/" + name + API_URI);
         swaggerResource.setSwaggerVersion("2.0");
