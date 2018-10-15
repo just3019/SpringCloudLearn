@@ -4,3 +4,10 @@ spring:
   cloud:
     config:
       uri: http://localhost:10000
+  boot:
+    admin:
+      context-path: admin
+  security:
+    user:
+      name: welian
+      password: welian
