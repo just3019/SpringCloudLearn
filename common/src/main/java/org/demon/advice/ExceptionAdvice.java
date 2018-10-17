@@ -1,5 +1,6 @@
 package org.demon.advice;
 
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
@@ -11,6 +12,15 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ExceptionAdvice {
 
-//    public Map
+    @ExceptionHandler(value = Throwable.class)
+    public Object errorHandler(Throwable e) {
+
+        if (e instanceof OutOfMemoryError) {
+            System.exit(0);
+            return null;
+        }
+
+        return null;
+    }
 
 }
