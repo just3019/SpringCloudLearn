@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: wanda
+  cloud:
+    config:
+      uri: ${CONFIG_URL:http://localhost:10000}
+      label: ${CONFIG_LABEL:master}
+      profile: ${CONFIG_PROFILE:dev}
+  datasource:
+    url: jdbc:mysql://localhost/demon?useSSL=false
+    username: root
+    password:
+mybatis:
+  type-aliases-package: org.demon.pojo
+  type-handlers-package: org.demon.mybatis.handler
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
