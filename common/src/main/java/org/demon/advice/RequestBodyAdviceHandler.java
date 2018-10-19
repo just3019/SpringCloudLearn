@@ -22,27 +22,31 @@ import java.lang.reflect.Type;
 @CommonsLog
 public class RequestBodyAdviceHandler implements RequestBodyAdvice {
     @Override
-    public boolean supports(MethodParameter methodParameter, Type type,
-                            Class<? extends HttpMessageConverter<?>> aClass) {
-        return false;
+    public boolean supports( MethodParameter methodParameter,  Type type,
+                             Class<? extends HttpMessageConverter<?>> aClass) {
+        return true;
     }
 
     @Override
-    public HttpInputMessage beforeBodyRead(HttpInputMessage httpInputMessage, MethodParameter methodParameter,
-                                           Type type, Class<? extends HttpMessageConverter<?>> aClass) throws IOException {
-        return null;
+    public HttpInputMessage beforeBodyRead( HttpInputMessage httpInputMessage,
+                                            MethodParameter methodParameter,
+                                            Type type,
+                                            Class<? extends HttpMessageConverter<?>> aClass) throws IOException {
+        return httpInputMessage;
     }
 
     @Override
-    public Object afterBodyRead(Object o, HttpInputMessage httpInputMessage, MethodParameter methodParameter,
-                                Type type, Class<? extends HttpMessageConverter<?>> aClass) {
-        log.info(StrUtil.format("RequestBody:{}", JSONUtil.toJsonPrettyStr(o)));
-        return null;
+    public Object afterBodyRead( Object body,  HttpInputMessage httpInputMessage,
+                                 MethodParameter methodParameter,
+                                 Type type,  Class<? extends HttpMessageConverter<?>> aClass) {
+        log.info(StrUtil.format("RequestBody:{}\n", JSONUtil.toJsonPrettyStr(body)));
+        return body;
     }
 
     @Override
-    public Object handleEmptyBody(Object o, HttpInputMessage httpInputMessage, MethodParameter methodParameter,
-                                  Type type, Class<? extends HttpMessageConverter<?>> aClass) {
-        return null;
+    public Object handleEmptyBody(Object body,  HttpInputMessage httpInputMessage,
+                                   MethodParameter methodParameter,
+                                   Type type,  Class<? extends HttpMessageConverter<?>> aClass) {
+        return body;
     }
 }
