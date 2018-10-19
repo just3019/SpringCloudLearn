@@ -3,11 +3,10 @@ package org.demon.advice;
 import org.demon.bean.BaseResult;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.lang.NonNull;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 /**
@@ -16,7 +15,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @date 2018/10/18 17:53
  * @since 1.0
  */
-@ControllerAdvice
+@RestControllerAdvice
 public class ResponseBodyAdviceHandler implements ResponseBodyAdvice {
     /**
      * 判断哪些需要拦截
