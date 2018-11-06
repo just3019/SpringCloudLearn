@@ -1,12 +1,4 @@
-target
-out
-*.iml
-.idea
-logs
-.log
-pom.xml.versionsBackup
-build
-dest
+/target/
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
