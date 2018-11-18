@@ -1,7 +1,6 @@
 package org.demon.service;
 
-import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.apachecommons.CommonsLog;
 import org.demon.bean.yima.YimaAccount;
 import org.demon.bean.yima.YimaLogin;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,7 @@ import java.net.http.HttpResponse;
  * @date 2018-11-13 16:33
  */
 @Service
-@Log4j2
+@CommonsLog
 public class YimaService {
 
     private static final String PRE_URL = "http://api.fxhyd.cn/UserInterface.aspx";
