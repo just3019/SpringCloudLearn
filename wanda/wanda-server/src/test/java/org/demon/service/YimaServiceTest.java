@@ -31,4 +31,5 @@ public class YimaServiceTest {
         yimaLogin.password = PASSWORD;
         yimaService.login(yimaLogin);
     }
+
 }

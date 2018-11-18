@@ -3,7 +3,7 @@ spring:
     name: test
   cloud:
     config:
-      uri: ${CONFIG_URL:http://localhost:10000}
+      uri: ${CONFIG_URL:http://config.luckygrra.com}
       label: ${CONFIG_LABEL:master}
       profile: ${CONFIG_PROFILE:dev}
 

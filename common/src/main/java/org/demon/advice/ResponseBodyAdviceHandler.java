@@ -6,8 +6,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.lang.NonNull;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
+
+import java.util.Optional;
 
 /**
  * @author demon
@@ -17,6 +20,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  */
 @RestControllerAdvice
 public class ResponseBodyAdviceHandler implements ResponseBodyAdvice {
+
+    /**
+     * 是否支持ResponseBody转换
+     */
+    private Boolean isSupportResponseConvert;
+
+
     /**
      * 判断哪些需要拦截
      *
@@ -26,7 +36,9 @@ public class ResponseBodyAdviceHandler implements ResponseBodyAdvice {
      */
     @Override
     public boolean supports(@NonNull MethodParameter returnType, @NonNull Class converterType) {
-        return true;
+        boolean fromError = null != returnType.getMethodAnnotation(ExceptionHandler.class);
+        return !fromError && !returnType.getExecutable().getDeclaringClass().getPackage()
+                .getName().startsWith("org.springframework.boot.actuate");
     }
 
 
@@ -41,4 +53,6 @@ public class ResponseBodyAdviceHandler implements ResponseBodyAdvice {
         result.setData(body);
         return result;
     }
+
+
 }
