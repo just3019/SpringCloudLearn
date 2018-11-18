@@ -15,20 +15,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>wanda-bean</module>
         <module>wanda-server</module>
     </modules>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.demon</groupId>
-                <artifactId>wanda-bean</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
 
     <build>
         <plugins>
