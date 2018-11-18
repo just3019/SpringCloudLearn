@@ -3,13 +3,13 @@ spring:
     name: wanda
   cloud:
     config:
-      uri: ${CONFIG_URL:http://localhost:10000}
+      uri: ${CONFIG_URL:http://config.luckygrra.com}
       label: ${CONFIG_LABEL:master}
       profile: ${CONFIG_PROFILE:dev}
   datasource:
-    url: jdbc:mysql://localhost/demon?useSSL=false
+    url: jdbc:mysql://114.115.250.185/wanda?useSSL=false
     username: root
-    password:
+    password: Slh3019!
 mybatis:
   type-aliases-package: org.demon.pojo
   type-handlers-package: org.demon.mybatis.handler

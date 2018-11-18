@@ -1,6 +1,7 @@
 package org.demon.service;
 
 import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.demon.bean.yima.YimaAccount;
 import org.demon.bean.yima.YimaLogin;
 import org.springframework.stereotype.Service;
