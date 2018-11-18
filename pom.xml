@@ -20,7 +20,6 @@
         <module>eureka-server</module>
         <module>ribbon-common</module>
         <module>zuul-server</module>
-        <module>mongo-server</module>
         <module>config-server</module>
         <module>common</module>
         <module>wanda</module>
