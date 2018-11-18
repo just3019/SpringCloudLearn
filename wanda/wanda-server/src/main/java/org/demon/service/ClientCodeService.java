@@ -32,5 +32,7 @@ public class ClientCodeService {
         if (IterUtil.isEmpty(clientCodes)) {
             throw new BusinessException(-3, "该客户端已失效");
         }
+        ClientCode clientCode = clientCodes.get(0);
+        clientCodeMapper.updateByPrimaryKey(clientCode);
     }
 }
