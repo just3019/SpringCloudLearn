@@ -33,6 +33,7 @@ public class ClientCodeService {
             throw new BusinessException(-3, "该客户端已失效");
         }
         ClientCode clientCode = clientCodes.get(0);
+        clientCode.setUpdatetime(new Date());
         clientCodeMapper.updateByPrimaryKey(clientCode);
     }
 }
