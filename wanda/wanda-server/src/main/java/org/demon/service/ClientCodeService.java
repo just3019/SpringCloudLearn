@@ -1,7 +1,6 @@
 package org.demon.service;
 
 import cn.hutool.core.collection.IterUtil;
-import cn.hutool.core.util.StrUtil;
 import org.demon.exception.BusinessException;
 import org.demon.mapper.ClientCodeMapper;
 import org.demon.pojo.ClientCode;
@@ -22,11 +21,13 @@ public class ClientCodeService {
     /**
      * 验证序列号
      *
-     * @param no 序列号
+     * @param no      序列号
+     * @param placeId wan编号
      */
-    public void check(String no) {
+    public void check(String no, String placeId) {
         ClientCodeExample example = new ClientCodeExample();
-        example.createCriteria().andNoEqualTo(no).andFailtimeGreaterThan(new Date());
+        example.createCriteria().andNoEqualTo(no).andFailtimeGreaterThan(new Date())
+                .andPlaceIdEqualTo(placeId).andStatusEqualTo(1);
         List<ClientCode> clientCodes = clientCodeMapper.selectByExample(example);
         if (IterUtil.isEmpty(clientCodes)) {
             throw new BusinessException(-3, "该客户端已失效");

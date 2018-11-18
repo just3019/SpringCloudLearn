@@ -16,9 +16,9 @@ public class ClientCodeController {
     private ClientCodeService clientCodeService;
 
 
-    @GetMapping(value = "/check/{no}")
-    public void check(@PathVariable("no") String no) {
-        clientCodeService.check(no);
+    @GetMapping(value = "/check/{no}/{placeId}")
+    public void check(@PathVariable("no") String no, @PathVariable("placeId") String placeId) {
+        clientCodeService.check(no, placeId);
 
     }
 

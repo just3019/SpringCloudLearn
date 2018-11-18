@@ -15,6 +15,8 @@ public class ClientCode {
 
     private Date failtime;
 
+    private String placeId;
+
     public Integer getId() {
         return id;
     }
@@ -61,5 +63,13 @@ public class ClientCode {
 
     public void setFailtime(Date failtime) {
         this.failtime = failtime;
+    }
+
+    public String getPlaceId() {
+        return placeId;
+    }
+
+    public void setPlaceId(String placeId) {
+        this.placeId = placeId == null ? null : placeId.trim();
     }
 }

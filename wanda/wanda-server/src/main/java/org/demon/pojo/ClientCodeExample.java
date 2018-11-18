@@ -494,6 +494,76 @@ public class ClientCodeExample {
             addCriterion("failtime not between", value1, value2, "failtime");
             return (Criteria) this;
         }
+
+        public Criteria andPlaceIdIsNull() {
+            addCriterion("place_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceIdIsNotNull() {
+            addCriterion("place_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceIdEqualTo(String value) {
+            addCriterion("place_id =", value, "placeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceIdNotEqualTo(String value) {
+            addCriterion("place_id <>", value, "placeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceIdGreaterThan(String value) {
+            addCriterion("place_id >", value, "placeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceIdGreaterThanOrEqualTo(String value) {
+            addCriterion("place_id >=", value, "placeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceIdLessThan(String value) {
+            addCriterion("place_id <", value, "placeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceIdLessThanOrEqualTo(String value) {
+            addCriterion("place_id <=", value, "placeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceIdLike(String value) {
+            addCriterion("place_id like", value, "placeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceIdNotLike(String value) {
+            addCriterion("place_id not like", value, "placeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceIdIn(List<String> values) {
+            addCriterion("place_id in", values, "placeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceIdNotIn(List<String> values) {
+            addCriterion("place_id not in", values, "placeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceIdBetween(String value1, String value2) {
+            addCriterion("place_id between", value1, value2, "placeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceIdNotBetween(String value1, String value2) {
+            addCriterion("place_id not between", value1, value2, "placeId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

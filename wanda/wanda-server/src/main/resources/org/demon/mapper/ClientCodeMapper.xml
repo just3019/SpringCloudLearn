@@ -8,6 +8,7 @@
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
     <result column="failtime" jdbcType="TIMESTAMP" property="failtime" />
+    <result column="place_id" jdbcType="VARCHAR" property="placeId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, no, status, createtime, updatetime, failtime
+    id, no, status, createtime, updatetime, failtime, place_id
   </sql>
   <select id="selectByExample" parameterType="org.demon.pojo.ClientCodeExample" resultMap="BaseResultMap">
     select
@@ -111,9 +112,11 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="org.demon.pojo.ClientCode" useGeneratedKeys="true">
     insert into client_code (no, status, createtime, 
-      updatetime, failtime)
+      updatetime, failtime, place_id
+      )
     values (#{no,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{updatetime,jdbcType=TIMESTAMP}, #{failtime,jdbcType=TIMESTAMP})
+      #{updatetime,jdbcType=TIMESTAMP}, #{failtime,jdbcType=TIMESTAMP}, #{placeId,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="org.demon.pojo.ClientCode" useGeneratedKeys="true">
     insert into client_code
@@ -133,6 +136,9 @@
       <if test="failtime != null">
         failtime,
       </if>
+      <if test="placeId != null">
+        place_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="no != null">
@@ -149,6 +155,9 @@
       </if>
       <if test="failtime != null">
         #{failtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="placeId != null">
+        #{placeId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -179,6 +188,9 @@
       <if test="record.failtime != null">
         failtime = #{record.failtime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.placeId != null">
+        place_id = #{record.placeId,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -191,7 +203,8 @@
       status = #{record.status,jdbcType=INTEGER},
       createtime = #{record.createtime,jdbcType=TIMESTAMP},
       updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
-      failtime = #{record.failtime,jdbcType=TIMESTAMP}
+      failtime = #{record.failtime,jdbcType=TIMESTAMP},
+      place_id = #{record.placeId,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -214,6 +227,9 @@
       <if test="failtime != null">
         failtime = #{failtime,jdbcType=TIMESTAMP},
       </if>
+      <if test="placeId != null">
+        place_id = #{placeId,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -223,7 +239,8 @@
       status = #{status,jdbcType=INTEGER},
       createtime = #{createtime,jdbcType=TIMESTAMP},
       updatetime = #{updatetime,jdbcType=TIMESTAMP},
-      failtime = #{failtime,jdbcType=TIMESTAMP}
+      failtime = #{failtime,jdbcType=TIMESTAMP},
+      place_id = #{placeId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
