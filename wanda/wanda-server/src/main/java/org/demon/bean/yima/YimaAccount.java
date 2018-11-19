@@ -10,4 +10,7 @@ public class YimaAccount {
     public String token;
 
 
+    public String getUrl() {
+        return "?action=getaccountinfo&token=" + token + "&format=1";
+    }
 }

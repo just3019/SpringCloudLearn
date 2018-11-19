@@ -1,8 +1,11 @@
 package org.demon.service;
 
+import cn.hutool.core.util.StrUtil;
 import lombok.extern.apachecommons.CommonsLog;
 import org.demon.bean.yima.YimaAccount;
 import org.demon.bean.yima.YimaLogin;
+import org.demon.bean.yima.YimaMobile;
+import org.demon.exception.BusinessException;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -28,10 +31,10 @@ public class YimaService {
      *
      * @param yimaLogin {@link YimaLogin}
      */
-    public void login(YimaLogin yimaLogin) {
+    public String login(YimaLogin yimaLogin) {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder(URI.create(PRE_URL + yimaLogin.getLoginUrl())).build();
-        HttpResponse response;
+        HttpResponse<String> response = null;
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
             log.info(response.statusCode() + " " + response.body());
@@ -39,10 +42,58 @@ public class YimaService {
             e.printStackTrace();
             log.error("易码登录错误");
         }
+        assert response != null;
+        return getString(response);
     }
 
-    public void get(YimaAccount yimaAccount){
-
+    /**
+     * 查询易码账号信息
+     *
+     * @param yimaAccount {@link YimaAccount}
+     */
+    public String get(YimaAccount yimaAccount) {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder(URI.create(PRE_URL + yimaAccount.getUrl())).build();
+        HttpResponse<String> response = null;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            log.info(response.statusCode() + " " + response.body());
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+            log.error("易码账号获取失败");
+        }
+        assert response != null;
+        return getString(response);
     }
+
+    /**
+     * 易码获取手机号
+     *
+     * @param yimaMobile {@link YimaMobile}
+     */
+    public String getMobile(YimaMobile yimaMobile) {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder(URI.create(PRE_URL + yimaMobile.getUrl())).build();
+        HttpResponse<String> response = null;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            log.info(response.statusCode() + " " + response.body());
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+            log.error("易码获取手机号失败");
+        }
+        assert response != null;
+        return getString(response);
+    }
+
+
+    private String getString(HttpResponse<String> response) {
+        assert response != null;
+        String[] result = response.body().split("\\|");
+        if (StrUtil.equals(result[0], "success")) return result[1];
+        throw new BusinessException(-4, response.body());
+    }
+
 
 }

@@ -1,7 +1,9 @@
 package org.demon.service;
 
 import org.demon.ApplicationLaunch;
+import org.demon.bean.yima.YimaAccount;
 import org.demon.bean.yima.YimaLogin;
+import org.demon.bean.yima.YimaMobile;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,22 @@ public class YimaServiceTest {
         YimaLogin yimaLogin = new YimaLogin();
         yimaLogin.username = USERNAME;
         yimaLogin.password = PASSWORD;
-        yimaService.login(yimaLogin);
+        System.out.println("获取易码token：" + yimaService.login(yimaLogin));
+    }
+
+    @Test
+    public void test_2() {
+        YimaAccount yimaAccount = new YimaAccount();
+        yimaAccount.token = "00737301489048957a6cdba66f365cca50a3d7d88601";
+        System.out.println("获取易码用户信息：" + yimaService.get(yimaAccount));
+    }
+
+    @Test
+    public void test_3() {
+        YimaMobile yimaMobile = new YimaMobile();
+        yimaMobile.itemid = "27894";
+        yimaMobile.token = "00737301489048957a6cdba66f365cca50a3d7d88601";
+        System.out.println("获取易码号码：" + yimaService.getMobile(yimaMobile));
     }
 
 }
