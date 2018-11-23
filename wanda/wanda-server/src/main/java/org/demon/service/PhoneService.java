@@ -51,7 +51,6 @@ public class PhoneService {
      */
     private Phone convert2Phone(PhoneBean bean) {
         Phone phone = new Phone();
-        phone.setResult(bean.result);
         phone.setMemberId(bean.memberId);
         phone.setPhone(bean.phone);
         phone.setPlaceId(bean.placeId);
