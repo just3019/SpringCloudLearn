@@ -52,7 +52,17 @@
             <!--&lt;!&ndash;<ignoreColumn column="updatetime"/>&ndash;&gt;-->
         <!--</table>-->
 
-        <table tableName="client_code" domainObjectName="ClientCode" enableUpdateByPrimaryKey="true"
+        <!--<table tableName="client_code" domainObjectName="ClientCode" enableUpdateByPrimaryKey="true"-->
+               <!--enableDeleteByPrimaryKey="true"-->
+               <!--enableInsert="true" enableSelectByPrimaryKey="true" selectByPrimaryKeyQueryId="true"-->
+               <!--enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true" selectByExampleQueryId="true">-->
+            <!--&lt;!&ndash; ibatis id 在返回值里   mybatis id 在对象中获取&ndash;&gt;-->
+            <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--</table>-->
+
+
+        <table tableName="phone" domainObjectName="Phone" enableUpdateByPrimaryKey="true"
                enableDeleteByPrimaryKey="true"
                enableInsert="true" enableSelectByPrimaryKey="true" selectByPrimaryKeyQueryId="true"
                enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
