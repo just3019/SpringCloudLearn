@@ -11,8 +11,6 @@ public class Phone {
 
     private String memberId;
 
-    private String result;
-
     private String placeId;
 
     private Date createtime;
@@ -49,14 +47,6 @@ public class Phone {
 
     public void setMemberId(String memberId) {
         this.memberId = memberId == null ? null : memberId.trim();
-    }
-
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result == null ? null : result.trim();
     }
 
     public String getPlaceId() {

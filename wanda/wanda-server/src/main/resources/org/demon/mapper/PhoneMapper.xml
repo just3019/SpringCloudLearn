@@ -6,7 +6,6 @@
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="token" jdbcType="VARCHAR" property="token" />
     <result column="member_id" jdbcType="VARCHAR" property="memberId" />
-    <result column="result" jdbcType="VARCHAR" property="result" />
     <result column="place_id" jdbcType="VARCHAR" property="placeId" />
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
@@ -70,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, phone, token, member_id, result, place_id, createtime, updatetime
+    id, phone, token, member_id, place_id, createtime, updatetime
   </sql>
   <select id="selectByExample" parameterType="org.demon.pojo.PhoneExample" resultMap="BaseResultMap">
     select
@@ -113,11 +112,11 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="org.demon.pojo.Phone" useGeneratedKeys="true">
     insert into phone (phone, token, member_id, 
-      result, place_id, createtime, 
-      updatetime)
+      place_id, createtime, updatetime
+      )
     values (#{phone,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, 
-      #{result,jdbcType=VARCHAR}, #{placeId,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{updatetime,jdbcType=TIMESTAMP})
+      #{placeId,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="org.demon.pojo.Phone" useGeneratedKeys="true">
     insert into phone
@@ -130,9 +129,6 @@
       </if>
       <if test="memberId != null">
         member_id,
-      </if>
-      <if test="result != null">
-        result,
       </if>
       <if test="placeId != null">
         place_id,
@@ -153,9 +149,6 @@
       </if>
       <if test="memberId != null">
         #{memberId,jdbcType=VARCHAR},
-      </if>
-      <if test="result != null">
-        #{result,jdbcType=VARCHAR},
       </if>
       <if test="placeId != null">
         #{placeId,jdbcType=VARCHAR},
@@ -189,9 +182,6 @@
       <if test="record.memberId != null">
         member_id = #{record.memberId,jdbcType=VARCHAR},
       </if>
-      <if test="record.result != null">
-        result = #{record.result,jdbcType=VARCHAR},
-      </if>
       <if test="record.placeId != null">
         place_id = #{record.placeId,jdbcType=VARCHAR},
       </if>
@@ -212,7 +202,6 @@
       phone = #{record.phone,jdbcType=VARCHAR},
       token = #{record.token,jdbcType=VARCHAR},
       member_id = #{record.memberId,jdbcType=VARCHAR},
-      result = #{record.result,jdbcType=VARCHAR},
       place_id = #{record.placeId,jdbcType=VARCHAR},
       createtime = #{record.createtime,jdbcType=TIMESTAMP},
       updatetime = #{record.updatetime,jdbcType=TIMESTAMP}
@@ -232,9 +221,6 @@
       <if test="memberId != null">
         member_id = #{memberId,jdbcType=VARCHAR},
       </if>
-      <if test="result != null">
-        result = #{result,jdbcType=VARCHAR},
-      </if>
       <if test="placeId != null">
         place_id = #{placeId,jdbcType=VARCHAR},
       </if>
@@ -252,7 +238,6 @@
     set phone = #{phone,jdbcType=VARCHAR},
       token = #{token,jdbcType=VARCHAR},
       member_id = #{memberId,jdbcType=VARCHAR},
-      result = #{result,jdbcType=VARCHAR},
       place_id = #{placeId,jdbcType=VARCHAR},
       createtime = #{createtime,jdbcType=TIMESTAMP},
       updatetime = #{updatetime,jdbcType=TIMESTAMP}
