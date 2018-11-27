@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ExecutorService;
@@ -78,6 +79,45 @@ public class JavaTest {
         System.out.println("完成" + (System.currentTimeMillis() - time));
         Thread.sleep(1000);
         System.out.println(map.size());
+
+    }
+
+    private String a() {
+        try {
+            System.out.println(System.currentTimeMillis() + " 正在执行a");
+            Thread.sleep(200);
+            System.out.println(System.currentTimeMillis() + " 完成执行a");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "a";
+    }
+
+    private String b() {
+        try {
+            System.out.println(System.currentTimeMillis() + " 正在执行b");
+            Thread.sleep(200);
+            System.out.println(System.currentTimeMillis() + " 完成执行b");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "b";
+    }
+
+    @Test
+    public void test_completable() {
+        long time = System.currentTimeMillis();
+        CompletableFuture<String> f1 = CompletableFuture.supplyAsync(this::a);
+        CompletableFuture<String> f2 = CompletableFuture.supplyAsync(this::b);
+//        CompletableFuture.allOf(f1, f2).join();
+        System.out.println(System.currentTimeMillis() + f1.join() + f2.join());
+        System.out.println(System.currentTimeMillis());
+        long time2 = System.currentTimeMillis();
+        System.out.println(time2 - time);
+
+        a();
+        b();
+        System.out.println(System.currentTimeMillis() - time2);
 
     }
 }
