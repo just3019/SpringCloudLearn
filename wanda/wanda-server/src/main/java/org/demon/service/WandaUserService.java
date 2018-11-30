@@ -40,12 +40,17 @@ public class WandaUserService {
         return list.get(0);
     }
 
-
+    /**
+     * 异步清理重复手机号
+     */
     public void clean() {
         ExecutorPool.getInstance().execute(this::cleanTask);
     }
 
 
+    /**
+     * 清理重复手机号任务
+     */
     private void cleanTask() {
         for (; ; ) {
             List<WandaUser> wandaUsers = wandaUserMapper.selectSamePhone();
@@ -56,6 +61,11 @@ public class WandaUserService {
         }
     }
 
+    /**
+     * 删除手机号，只留一个
+     *
+     * @param wandaUser {@link WandaUser#getPhone()}
+     */
     private void deleteUntilOne(WandaUser wandaUser) {
         String phone = wandaUser.getPhone();
         WandaUserExample example = new WandaUserExample();

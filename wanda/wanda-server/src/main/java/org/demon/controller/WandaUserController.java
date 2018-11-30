@@ -35,6 +35,9 @@ public class WandaUserController {
         return true;
     }
 
+    /**
+     * 清理wandaUser表中重复的手机号
+     */
     @GetMapping(value = "/wandaUser/clean")
     public void clean(){
         wandaUserService.clean();
