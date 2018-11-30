@@ -30,4 +30,7 @@ public interface WandaUserMapper {
     int updateByPrimaryKeySelective(WandaUser record);
 
     int updateByPrimaryKey(WandaUser record);
+
+    List<WandaUser> selectSamePhone();
+
 }

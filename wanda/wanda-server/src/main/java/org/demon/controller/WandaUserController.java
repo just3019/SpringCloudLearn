@@ -34,4 +34,9 @@ public class WandaUserController {
         wandaUserService.selectByPhone(phone);
         return true;
     }
+
+    @GetMapping(value = "/wandaUser/clean")
+    public void clean(){
+        wandaUserService.clean();
+    }
 }

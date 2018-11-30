@@ -1,9 +1,11 @@
 package org.demon.service;
 
+import cn.hutool.core.collection.CollectionUtil;
 import org.demon.exception.BusinessException;
 import org.demon.mapper.WandaUserMapper;
 import org.demon.pojo.WandaUser;
 import org.demon.pojo.WandaUserExample;
+import org.demon.pool.ExecutorPool;
 import org.demon.util.FunctionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,4 +40,39 @@ public class WandaUserService {
         return list.get(0);
     }
 
+
+    public void clean() {
+        ExecutorPool.getInstance().execute(this::cleanTask);
+    }
+
+
+    private void cleanTask() {
+        for (; ; ) {
+            List<WandaUser> wandaUsers = wandaUserMapper.selectSamePhone();
+            wandaUsers.forEach(this::deleteUntilOne);
+            if (wandaUsers.size() != 100) {
+                break;
+            }
+        }
+    }
+
+    private void deleteUntilOne(WandaUser wandaUser) {
+        String phone = wandaUser.getPhone();
+        WandaUserExample example = new WandaUserExample();
+        example.createCriteria().andPhoneEqualTo(phone);
+        List<WandaUser> wandaUsers = wandaUserMapper.selectByExample(example);
+        if (CollectionUtil.isEmpty(wandaUsers)) {
+            return;
+        }
+        List<Long> ids = new ArrayList<>();
+        for (int i = 0; i < wandaUsers.size(); i++) {
+            if (i == 0) {
+                continue;
+            }
+            ids.add(wandaUsers.get(i).getId());
+        }
+        example.clear();
+        example.createCriteria().andIdIn(ids);
+        wandaUserMapper.deleteByExample(example);
+    }
 }

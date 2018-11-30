@@ -167,6 +167,9 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+  <select id="selectSamePhone" resultType="org.demon.pojo.WandaUser">
+      select phone from wanda_user group by phone having count(*) > 1 limit 100;
+  </select>
   <update id="updateByExampleSelective" parameterType="map">
     update wanda_user
     <set>
