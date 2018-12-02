@@ -5,8 +5,10 @@ import org.demon.bean.wanda.PhoneBean;
 import org.demon.bean.wanda.PhoneQuery;
 import org.demon.exception.BusinessException;
 import org.demon.mapper.PhoneMapper;
+import org.demon.mapper.WandaUserMapper;
 import org.demon.pojo.Phone;
 import org.demon.pojo.PhoneExample;
+import org.demon.pojo.WandaUser;
 import org.demon.util.FunctionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,8 @@ public class PhoneService {
 
     @Autowired
     private PhoneMapper phoneMapper;
+    @Autowired
+    private WandaUserMapper wandaUserMapper;
 
 
     /**
@@ -37,9 +41,13 @@ public class PhoneService {
      */
     public Phone save(PhoneBean bean) {
         Phone phone = convert2Phone(bean);
-        if (phoneMapper.insertSelective(phone) <= 0) {
-            throw new BusinessException(-5, "保存phone失败");
-        }
+        FunctionUtil.check(phoneMapper.insertSelective(phone) <= 0, new BusinessException(-5, "保存phone失败"));
+        WandaUser user = new WandaUser();
+        user.setMemberId(bean.memberId);
+        user.setPhone(bean.phone);
+        user.setPlaceId(bean.placeId);
+        user.setRegDate(System.currentTimeMillis());
+        FunctionUtil.check(wandaUserMapper.insertSelective(user) <= 0, new BusinessException(-9, "保存wanda_user失败"));
         return phone;
     }
 
