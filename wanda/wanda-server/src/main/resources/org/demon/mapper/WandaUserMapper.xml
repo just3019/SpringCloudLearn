@@ -7,7 +7,6 @@
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="activated" jdbcType="BIT" property="activated" />
     <result column="place_id" jdbcType="VARCHAR" property="placeId" />
-    <result column="place_name" jdbcType="VARCHAR" property="placeName" />
     <result column="reg_date" jdbcType="BIGINT" property="regDate" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -69,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, member_id, phone, activated, place_id, place_name, reg_date
+    id, member_id, phone, activated, place_id, reg_date
   </sql>
   <select id="selectByExample" parameterType="org.demon.pojo.WandaUserExample" resultMap="BaseResultMap">
     select
@@ -112,11 +111,9 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="org.demon.pojo.WandaUser" useGeneratedKeys="true">
     insert into wanda_user (member_id, phone, activated, 
-      place_id, place_name, reg_date
-      )
+      place_id, reg_date)
     values (#{memberId,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{activated,jdbcType=BIT}, 
-      #{placeId,jdbcType=VARCHAR}, #{placeName,jdbcType=VARCHAR}, #{regDate,jdbcType=BIGINT}
-      )
+      #{placeId,jdbcType=VARCHAR}, #{regDate,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="org.demon.pojo.WandaUser" useGeneratedKeys="true">
     insert into wanda_user
@@ -132,9 +129,6 @@
       </if>
       <if test="placeId != null">
         place_id,
-      </if>
-      <if test="placeName != null">
-        place_name,
       </if>
       <if test="regDate != null">
         reg_date,
@@ -153,9 +147,6 @@
       <if test="placeId != null">
         #{placeId,jdbcType=VARCHAR},
       </if>
-      <if test="placeName != null">
-        #{placeName,jdbcType=VARCHAR},
-      </if>
       <if test="regDate != null">
         #{regDate,jdbcType=BIGINT},
       </if>
@@ -166,9 +157,6 @@
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
-  </select>
-  <select id="selectSamePhone" resultType="org.demon.pojo.WandaUser">
-      select phone from wanda_user group by phone having count(*) > 1 limit 100;
   </select>
   <update id="updateByExampleSelective" parameterType="map">
     update wanda_user
@@ -188,9 +176,6 @@
       <if test="record.placeId != null">
         place_id = #{record.placeId,jdbcType=VARCHAR},
       </if>
-      <if test="record.placeName != null">
-        place_name = #{record.placeName,jdbcType=VARCHAR},
-      </if>
       <if test="record.regDate != null">
         reg_date = #{record.regDate,jdbcType=BIGINT},
       </if>
@@ -206,7 +191,6 @@
       phone = #{record.phone,jdbcType=VARCHAR},
       activated = #{record.activated,jdbcType=BIT},
       place_id = #{record.placeId,jdbcType=VARCHAR},
-      place_name = #{record.placeName,jdbcType=VARCHAR},
       reg_date = #{record.regDate,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -227,9 +211,6 @@
       <if test="placeId != null">
         place_id = #{placeId,jdbcType=VARCHAR},
       </if>
-      <if test="placeName != null">
-        place_name = #{placeName,jdbcType=VARCHAR},
-      </if>
       <if test="regDate != null">
         reg_date = #{regDate,jdbcType=BIGINT},
       </if>
@@ -242,7 +223,6 @@
       phone = #{phone,jdbcType=VARCHAR},
       activated = #{activated,jdbcType=BIT},
       place_id = #{placeId,jdbcType=VARCHAR},
-      place_name = #{placeName,jdbcType=VARCHAR},
       reg_date = #{regDate,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>

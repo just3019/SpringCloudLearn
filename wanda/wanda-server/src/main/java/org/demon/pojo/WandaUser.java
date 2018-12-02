@@ -11,8 +11,6 @@ public class WandaUser {
 
     private String placeId;
 
-    private String placeName;
-
     private Long regDate;
 
     public Long getId() {
@@ -53,14 +51,6 @@ public class WandaUser {
 
     public void setPlaceId(String placeId) {
         this.placeId = placeId == null ? null : placeId.trim();
-    }
-
-    public String getPlaceName() {
-        return placeName;
-    }
-
-    public void setPlaceName(String placeName) {
-        this.placeName = placeName == null ? null : placeName.trim();
     }
 
     public Long getRegDate() {
