@@ -46,6 +46,7 @@ public class PhoneService {
         user.setMemberId(bean.memberId);
         user.setPhone(bean.phone);
         user.setPlaceId(bean.placeId);
+        user.setActivated(false);
         user.setRegDate(System.currentTimeMillis());
         FunctionUtil.check(wandaUserMapper.insertSelective(user) <= 0, new BusinessException(-9, "保存wanda_user失败"));
         return phone;
