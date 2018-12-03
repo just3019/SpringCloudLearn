@@ -226,4 +226,8 @@
       reg_date = #{regDate,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="selectSamePhone" resultType="org.demon.pojo.WandaUser">
+    select phone from wanda_user group by phone having count(*) > 1 limit 100;
+  </select>
 </mapper>
