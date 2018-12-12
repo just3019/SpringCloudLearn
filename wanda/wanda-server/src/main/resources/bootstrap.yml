@@ -7,9 +7,9 @@ spring:
       label: ${CONFIG_LABEL:master}
       profile: ${CONFIG_PROFILE:dev}
   datasource:
-    url: jdbc:mysql://114.115.250.185/wanda?useSSL=false
-    username: root
-    password: Slh3019!
+    url: jdbc:mysql://114.115.251.174/wanda?useSSL=false
+    username: wanda
+    password: 9J13nt3s!RbQ8V15HTLY2fG^!T8xP8iX
 mybatis:
   type-aliases-package: org.demon.pojo
   type-handlers-package: org.demon.mybatis.handler
