@@ -22,7 +22,6 @@
         <module>zuul-server</module>
         <module>config-server</module>
         <module>common</module>
-        <module>wanda</module>
     </modules>
 
     <properties>
