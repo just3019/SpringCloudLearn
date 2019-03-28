@@ -15,10 +15,12 @@ public class BubbleSort {
             return arr;
         }
         for (int i = 0; i < (arr.length - 1); i++) {
-            if (arr[i] > arr[i + 1]) {
-                int t = arr[i];
-                arr[i] = arr[i + 1];
-                arr[i + 1] = t;
+            for (int j = 0; j < (arr.length - 1); j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int t = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = t;
+                }
             }
         }
         return arr;
@@ -26,7 +28,7 @@ public class BubbleSort {
 
 
     public static void main(String[] args) {
-        int[] arr = {1, 3, 2, 5, 4};
+        int[] arr = {5, 4, 3, 2, 1};
         System.out.println(Arrays.toString(bubbleSort(arr)));
     }
 }
