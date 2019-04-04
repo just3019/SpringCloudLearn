@@ -1,6 +1,6 @@
 package org.demon.design.decorator;
 
-public class PacketBodyCreator implements IPacketCreator {
+public class PacketCreator implements IPacketCreator {
 
 
     @Override
